@@ -66,15 +66,18 @@
 
             if (event.data.contains('#'))
             {
+                alert('1)'+requestName+requestText);
                 let requestName = event.data.split('#')[0];
                 let requestText = event.data.split('#')[1];
                 switch (requestName)
                 {
                     default:
+                    alert('2)'+requestName+requestText);
                         break;
 
                     case 'Authorization':
                         {
+                            alert('3)'+requestName+requestText);
                             alert(requestText);
                             break;
                         }
