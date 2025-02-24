@@ -66,25 +66,29 @@
 
             if (event.data.contains('#'))
             {
-                alert('1)'+requestName+requestText);
+                outputDiv
+                .innerHTML += `<p>Received <b>"1)${requestName} + ${requestText}"</b> from server.</p>`;
                 let requestName = event.data.split('#')[0];
                 let requestText = event.data.split('#')[1];
                 switch (requestName)
                 {
                     default:
-                    alert('2)'+requestName+requestText);
+                    outputDiv
+                    .innerHTML += `<p>Received <b>"2)${requestName} + ${requestText}"</b> from server.</p>`;
                         break;
 
                     case 'Authorization':
                         {
-                            alert('3)'+requestName+requestText);
+                            outputDiv
+                            .innerHTML += `<p>Received <b>"3)${requestName} + ${requestText}"</b> from server.</p>`;
                             alert(requestText);
                             break;
                         }
                 }
             }
             else
-            alert('4)'+requestName+requestText);
+            outputDiv
+                .innerHTML += `<p>Received <b>"4)${requestName} + ${requestText}"</b> from server.</p>`;
         };
 
         // Event listener for when the 
