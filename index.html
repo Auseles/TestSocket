@@ -26,21 +26,21 @@
     </div>
 
     <script>
-        // let url = window.location.href;
-        // let paramsStr = url.split('?')[1];
-        // let params = new URLSearchParams(paramsStr);
-        // let id;
-        // let username;
-        // for (let pair of params.entries()) 
-        // {
-        //     let name = pair[0];
-        //     let value = pair[1];
-        //     if (name == 'username')
-        //         username = value;
-        //     if (name == 'id')
-        //         id = value;
-        //     //document.write(name + "=" + value + '; ');
-        // }
+        let url = window.location.href;
+        let paramsStr = url.split('?')[1];
+        let params = new URLSearchParams(paramsStr);
+        let id;
+        let username;
+        for (let pair of params.entries()) 
+        {
+            let name = pair[0];
+            let value = pair[1];
+            if (name == 'username')
+                username = value;
+            if (name == 'id')
+                id = value;
+            //document.write(name + "=" + value + '; ');
+        }
 
         // Create a WebSocket instance
         // and connect to the server
@@ -52,28 +52,28 @@
             // Alert the user that they are 
             // connected to the WebSocket server
             alert('You are Connected to WebSocket Server');
-            //socket.send('Connection#' + id + '\f')
+            socket.send('Connection#' + id + '\f')
         };
 
         // Event listener for when a message
         //  is received from the server
         socket.onmessage = function (event) {
-            // if (event.data.contains('\f') && event.data.contains('#'))
-            // {
-            //     let requestName = event.data.split('#')[0];
-            //     let requestText = event.data.split('#')[1];
-            //     switch (requestName)
-            //     {
-            //         default:
-            //             break;
+            if (event.data.contains('\f') && event.data.contains('#'))
+            {
+                let requestName = event.data.split('#')[0];
+                let requestText = event.data.split('#')[1];
+                switch (requestName)
+                {
+                    default:
+                        break;
 
-            //         case 'Authorization':
-            //             {
-            //                 alert(requestText);
-            //                 break;
-            //             }
-            //     }
-            // }   
+                    case 'Authorization':
+                        {
+                            alert(requestText);
+                            break;
+                        }
+                }
+            }   
             // Get the output div element
             const outputDiv = document
                 .getElementById('output');
