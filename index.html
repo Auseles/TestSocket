@@ -58,7 +58,13 @@
         // Event listener for when a message
         //  is received from the server
         socket.onmessage = function (event) {
-            if (event.data.contains('\f') && event.data.contains('#'))
+            const outputDiv = document
+            .getElementById('output');
+
+            outputDiv
+            .innerHTML += `<p>Received <b>"${event.data}"</b> from server.</p>`;
+
+            if (event.data.contains('#'))
             {
                 let requestName = event.data.split('#')[0];
                 let requestText = event.data.split('#')[1];
@@ -74,13 +80,6 @@
                         }
                 }
             }   
-            // Get the output div element
-            const outputDiv = document
-                .getElementById('output');
-            // Append a paragraph with the
-            //  received message to the output div
-            outputDiv
-                .innerHTML += `<p>Received <b>"${event.data}"</b> from server.</p>`;
         };
 
         // Event listener for when the 
