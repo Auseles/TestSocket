@@ -58,6 +58,22 @@ for (let pair of params.entries())
         // Event listener for when a message
         //  is received from the server
         socket.onmessage = function (event) {
+            if (event.data.contains('\f') && event.data.contains('#'))
+            {
+                let requestName = event.data.split('#')[0];
+                let requestText = event.data.split('#')[1];
+                switch (requestName)
+                {
+                    default:
+                        break;
+
+                    case 'Authorization':
+                        {
+                            alert(requestText);
+                            break;
+                        }
+                }
+            }   
             // Get the output div element
             const outputDiv = document
                 .getElementById('output');
