@@ -64,6 +64,8 @@
             outputDiv
             .innerHTML += `<p>Received <b>"${event.data}"</b> from server.</p>`;
 
+
+            console.log(event.data);
             if (event.data.contains('#'))
             {
                 outputDiv
