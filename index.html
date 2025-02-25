@@ -103,9 +103,20 @@
             is_flexible: false // Опционально: гибкая цена
         };
 
-        // Отправка инвойса через Telegram Web App
-        tg.sendData(JSON.stringify(invoice));
-
+        // Отправка инвойса через Bot API
+        fetch(`https://api.telegram.org/bot${'7754126241:AAFCGJ3wr4_oKBwJ-QdnVoR9_kxPJc0XvJQ'}/sendInvoice`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(invoice)
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Invoice sent:", data);
+        })
+        .catch(error => {
+            alert("Error sending invoice:", error);
+        });
+        
         }
 
         // Event listener for when the 
