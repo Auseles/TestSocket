@@ -69,10 +69,10 @@
             let str = `'${event.data}'`;
             if (str.includes('#'))
             {
-                outputDiv
-                .innerHTML += `<p>Received <b>"1)${requestName} + ${requestText}"</b> from server.</p>`;
                 let requestName = event.data.split('#')[0];
                 let requestText = event.data.split('#')[1];
+                outputDiv
+                .innerHTML += `<p>Received <b>"1)${requestName} + ${requestText}"</b> from server.</p>`;
                 switch (requestName)
                 {
                     default:
@@ -91,7 +91,7 @@
             }
             else
             outputDiv
-                .innerHTML += `<p>Received <b>"4)${requestName} + ${requestText}"</b> from server.</p>`;
+                .innerHTML += `<p>Received <b>"4)$ffff + $aaaa"</b> from server.</p>`;
         };
 
         // Event listener for when the 
