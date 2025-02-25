@@ -66,7 +66,8 @@
 
 
             console.log(event.data);
-            if (event.data.contains('#'))
+            let str = `'${event.data}'`;
+            if (str.includes('#'))
             {
                 outputDiv
                 .innerHTML += `<p>Received <b>"1)${requestName} + ${requestText}"</b> from server.</p>`;
