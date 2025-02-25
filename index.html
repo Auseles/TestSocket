@@ -31,6 +31,7 @@
 
     <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
     <script>
+        const tg = window.Telegram.WebApp;
         let url = window.location.href;
         let paramsStr = url.split('?')[1];
         let params = new URLSearchParams(paramsStr);
@@ -81,11 +82,28 @@
 
                     case 'Authorization':
                         {
+                            createInvoice();
                             break;
                         }
                 }
             }
         };
+
+        function createInvoice() {
+        const invoice = {
+            chat_id: tg.initDataUnsafe.user.id, // ID пользователя
+            title: "Покупка товара", // Название товара
+            description: "Описание товара", // Описание
+            payload: "unique_payload_123", // Уникальный идентификатор
+            currency: "XTR", // Валюта (Telegram Stars используют USD)
+            prices: [{ label: "Цена", amount: 1 }], // Цена в минимальных единицах валюты (1000 = $10.00)
+            is_flexible: false // Опционально: гибкая цена
+        };
+
+        // Отправка инвойса через Telegram Web App
+        tg.sendData(JSON.stringify(invoice));
+
+        }
 
         // Event listener for when the 
         // WebSocket connection is closed
