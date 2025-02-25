@@ -52,7 +52,7 @@
             // Alert the user that they are 
             // connected to the WebSocket server
             alert('You are Connected to WebSocket Server');
-            socket.send('Connection#' + id + '\f')
+            socket.send('Connection#id:' + id + '?' + 'username:' + username + '\f')
         };
 
         // Event listener for when a message
@@ -64,34 +64,22 @@
             outputDiv
             .innerHTML += `<p>Received <b>"${event.data}"</b> from server.</p>`;
 
-
-            console.log(event.data);
             let str = `'${event.data}'`;
             if (str.includes('#'))
             {
                 let requestName = event.data.split('#')[0];
                 let requestText = event.data.split('#')[1];
-                outputDiv
-                .innerHTML += `<p>Received <b>"1)${requestName} + ${requestText}"</b> from server.</p>`;
                 switch (requestName)
                 {
                     default:
-                    outputDiv
-                    .innerHTML += `<p>Received <b>"2)${requestName} + ${requestText}"</b> from server.</p>`;
                         break;
 
                     case 'Authorization':
                         {
-                            outputDiv
-                            .innerHTML += `<p>Received <b>"3)${requestName} + ${requestText}"</b> from server.</p>`;
-                            alert(requestText);
                             break;
                         }
                 }
             }
-            else
-            outputDiv
-                .innerHTML += `<p>Received <b>"4)$ffff + $aaaa"</b> from server.</p>`;
         };
 
         // Event listener for when the 
