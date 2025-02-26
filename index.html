@@ -120,6 +120,15 @@
 
         }
 
+        tg.onEvent("invoiceClosed", (event) => {
+            if (event.status === "paid") {
+                alert("Оплата прошла успешно!");
+        // Дополнительные действия после успешной оплаты
+            } else {
+                alert("Оплата не была завершена.");
+            }
+        });
+
         // Event listener for when the 
         // WebSocket connection is closed
         socket.onclose = function (event) {
