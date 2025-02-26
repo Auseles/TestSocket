@@ -92,7 +92,7 @@
             }
         };
 
-        function createInvoice() {
+        async function createInvoice() {
         const invoice = {
             chat_id: id, // ID пользователя
             title: "Покупка товара", // Название товара
@@ -102,21 +102,22 @@
             prices: [{ label: "Цена", amount: 1 }], // Цена в минимальных единицах валюты (1000 = $10.00)
             is_flexible: false // Опционально: гибкая цена
         };
-
-        // Отправка инвойса через Bot API
-        fetch(`https://api.telegram.org/bot${'7754126241:AAFCGJ3wr4_oKBwJ-QdnVoR9_kxPJc0XvJQ'}/sendInvoice`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(invoice)
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert("Invoice sent:", data);
-        })
-        .catch(error => {
-            alert("Error sending invoice:", error);
-        });
         
+        const response = await fetch(`https://api.telegram.org/bot${'7754126241:AAFCGJ3wr4_oKBwJ-QdnVoR9_kxPJc0XvJQ'}/createInvoiceLink`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(invoice)
+        });
+
+        const data = await response.json();
+
+        if (data.ok) {
+            const invoiceLink = data.result; // Получаем ссылку на инвойс
+            tg.openInvoice(invoiceLink); // Открываем окно оплаты внутри Mini App
+        } else {
+            console.error("Ошибка при создании инвойса:", data.description);
+        }
+
         }
 
         // Event listener for when the 
