@@ -53,7 +53,17 @@
 
         // Create a WebSocket instance
         // and connect to the server
-        const socket = new WebSocket('ws://localhost:4649/app');
+        var socket = new WebSocket('ws://localhost:4649/app');
+        
+        for (let i = 0; i < 1; i++) {
+            const worker = new Worker("worker.js");
+            
+            worker.addEventListener('message', (ctx) => {
+                console.log('надо короче ' + ctx.data);
+                console.log('сделал запрос ' + ctx.data + ' на ' + socket)
+                worker.postMessage(ctx.data);
+            });
+        }
 
         // Event listener for when 
         //the WebSocket connection is opened
@@ -81,6 +91,7 @@
                 switch (requestName)
                 {
                     default:
+                        createInvoice();
                         break;
 
                     case 'Authorization':
