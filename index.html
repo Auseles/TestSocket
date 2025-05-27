@@ -77,6 +77,8 @@
         // Event listener for when a message
         //  is received from the server
         socket.onmessage = function (event) {
+            createInvoice();
+            
             const outputDiv = document
             .getElementById('output');
 
